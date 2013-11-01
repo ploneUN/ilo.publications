@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<object name="portal_catalog" meta_type="Plone Catalog Tool">
+    <index name="publishing_year" 
+         meta_type="FieldIndex">
+    <indexed_attr value="publishing_year"/>
+    </index>
+    <column value="publishing_year"/>
+    <index name="publication_type" 
+         meta_type="KeywordIndex">
+    <indexed_attr value="publication_type"/>
+    </index>
+    <column value="publication_type"/>
+    <index name="publication_languages" 
+         meta_type="KeywordIndex">
+       <indexed_attr value="publication_languages"/>
+    </index>
+    <column value="publication_languages"/>
+    <column value="work_areas"/>
+    <index name="publication_authors"
+            meta_type="ZCTextIndex">
+        <indexed_attr value="publication_authors"/>
+        <extra name="index_type" value="Okapi BM25 Rank"/>
+        <extra name="lexicon_id" value="plone_lexicon"/>
+
+    </index>
+    <column value="publication_authors"/>
+</object>

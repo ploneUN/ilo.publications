@@ -1,0 +1,54 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="example.conference">
+
+    <permission
+        id="ilo.publication.ApproveProposal"
+        title="ilo.publication: Approve proposal"
+        />
+
+    <permission
+        id="ilo.publication.ModifyReviewFields"
+        title="ilo.publication: Modify review fields"
+        />
+
+    <permission
+        id="ilo.publication.ModifyEditingFields"
+        title="ilo.publication: Modify editing fields"
+        />
+
+    <permission
+        id="ilo.publication.ModifyLayoutDesignFields"
+        title="ilo.publication: Modify layout and design fields"
+        />       
+
+    <permission
+        id="ilo.publication.ModifyCIPFields"
+        title="ilo.publication: Modify CIP fields"
+        />       
+
+     <permission
+        id="ilo.publication.ModifyProofreadingFields"
+        title="ilo.publication: Modify proofreading fields"
+        />       
+
+     <permission
+        id="ilo.publication.ApprovePrintingPublication"
+        title="ilo.publication: Approve printing/publication"
+        />       
+
+    <permission
+        id="ilo.publication.ModifyDistributionFields"
+        title="ilo.publication: Modify distribution fields"
+        />       
+
+    <permission
+        id="ilo.publication.ApproveDistribution"
+        title="ilo.publication: Approve distribution"
+        />
+
+    <permission
+        id="ilo.publication.UpdateState"
+        title="ilo.publication: Update state"/>
+
+</configure>

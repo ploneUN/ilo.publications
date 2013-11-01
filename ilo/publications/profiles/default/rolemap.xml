@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<rolemap>
+  <permissions>
+    <permission name="ilo.publication: Approve proposal" acquire="False"/>
+    <permission name="ilo.publication: Modify review fields" acquire="False"/>
+    <permission name="ilo.publication: Modify editing fields" acquire="False"/>
+    <permission name="ilo.publication: Modify layout and design fields" acquire="False"/>
+    <permission name="ilo.publication: Modify CIP fields" acquire="False"/>
+    <permission name="ilo.publication: Modify proofreading fields" acquire="False"/>
+    <permission name="ilo.publication: Approve printing/publication" acquire="False"/>
+    <permission name="ilo.publication: Modify distribution fields" acquire="False"/>
+    <permission name="ilo.publication: Approve distribution" acquire="False"/>
+  </permissions>
+</rolemap>

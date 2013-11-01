@@ -1,0 +1,21 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser"
+            >
+
+    <browser:page
+        for="ilo.publications.interfaces.INonOfficialPublication"
+        name="edit"
+        class=".edit.EditView"
+        permission="cmf.ModifyPortalContent"
+        />
+
+    <browser:page
+        for="ilo.publications.interfaces.IWorkingPaper"
+        name="edit"
+        class=".edit.EditView"
+        permission="cmf.ModifyPortalContent"
+        />
+
+
+
+</configure>

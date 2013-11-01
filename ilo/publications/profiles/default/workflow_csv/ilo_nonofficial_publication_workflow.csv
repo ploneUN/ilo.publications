@@ -1,0 +1,356 @@
+[Workflow]
+Id:,ilo_nonofficial_publication_workflow
+Title:,ILO Non-Official Publication Workflow
+Description:,"- Essentially a workflow with no transitions, but has a Published state, so portlets and applications that expect that state will continue to work."
+Initial state:,draft
+Type:,Workflow
+State variable:,review_state
+
+[State]
+Id:,cip-request
+Title:,Request CIP and ISBN 
+Description:,
+Transitions,"submit-for-layout-and-design, retract-to-editing"
+Permissions,Acquire,Anonymous,Manager,Owner,Reader,Editor,Contributor,Reviewer
+Access contents information,Y,N,N,N,N,N,N,N
+View,Y,N,N,N,N,N,N,N
+Modify portal content,Y,N,N,N,N,N,N,N
+Add portal content,Y,N,N,N,N,N,N,N
+Change portal events,Y,N,N,N,N,N,N,N
+List folder contents,Y,N,N,N,N,N,N,N
+ilo.publication: Approve distribution,Y,N,N,N,N,N,N,N
+ilo.publication: Approve printing/publication,Y,N,N,N,N,N,N,N
+ilo.publication: Approve proposal,Y,N,N,N,N,N,N,N
+ilo.publication: Modify CIP fields,Y,N,Y,Y,N,N,N,Y
+ilo.publication: Modify distribution fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify editing fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify layout and design fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify proofreading fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify review fields,Y,N,N,N,N,N,N,N
+ilo.publication: Update state,N,N,Y,Y,N,N,N,Y
+ilo.publication: Update transition,N,N,Y,Y,N,N,N,Y
+
+[State]
+Id:,draft
+Title:,Draft
+Description:,
+Transitions,submit-for-review
+Permissions,Acquire,Anonymous,Manager,Owner,Reader,Editor,Contributor,Reviewer
+Access contents information,Y,N,N,N,N,N,N,N
+View,Y,N,N,N,N,N,N,N
+Modify portal content,Y,N,N,N,N,N,N,N
+Add portal content,Y,N,N,N,N,N,N,N
+Change portal events,Y,N,N,N,N,N,N,N
+List folder contents,Y,N,N,N,N,N,N,N
+ilo.publication: Approve distribution,Y,N,N,N,N,N,N,N
+ilo.publication: Approve printing/publication,Y,N,N,N,N,N,N,N
+ilo.publication: Approve proposal,N,N,Y,Y,N,N,N,Y
+ilo.publication: Modify CIP fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify distribution fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify editing fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify layout and design fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify proofreading fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify review fields,Y,N,N,N,N,N,N,N
+ilo.publication: Update state,N,N,Y,Y,N,N,N,Y
+ilo.publication: Update transition,N,N,Y,Y,N,N,N,Y
+
+[State]
+Id:,editing
+Title:,Under editing
+Description:,
+Transitions,"request-for-cip, retract-to-review"
+Permissions,Acquire,Anonymous,Manager,Owner,Reader,Editor,Contributor,Reviewer
+Access contents information,Y,N,N,N,N,N,N,N
+View,Y,N,N,N,N,N,N,N
+Modify portal content,Y,N,N,N,N,N,N,N
+Add portal content,Y,N,N,N,N,N,N,N
+Change portal events,Y,N,N,N,N,N,N,N
+List folder contents,Y,N,N,N,N,N,N,N
+ilo.publication: Approve distribution,Y,N,N,N,N,N,N,N
+ilo.publication: Approve printing/publication,Y,N,N,N,N,N,N,N
+ilo.publication: Approve proposal,Y,N,N,N,N,N,N,N
+ilo.publication: Modify CIP fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify distribution fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify editing fields,Y,N,Y,Y,N,N,N,Y
+ilo.publication: Modify layout and design fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify proofreading fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify review fields,Y,N,N,N,N,N,N,N
+ilo.publication: Update state,N,N,Y,Y,N,N,N,Y
+ilo.publication: Update transition,N,N,Y,Y,N,N,N,Y
+
+[State]
+Id:,layout-design
+Title:,Layout and design
+Description:,
+Transitions,"submit-for-proofreading, retract-to-cip-request"
+Permissions,Acquire,Anonymous,Manager,Owner,Reader,Editor,Contributor,Reviewer
+Access contents information,Y,N,N,N,N,N,N,N
+View,Y,N,N,N,N,N,N,N
+Modify portal content,Y,N,N,N,N,N,N,N
+Add portal content,Y,N,N,N,N,N,N,N
+Change portal events,Y,N,N,N,N,N,N,N
+List folder contents,Y,N,N,N,N,N,N,N
+ilo.publication: Approve distribution,Y,N,N,N,N,N,N,N
+ilo.publication: Approve printing/publication,Y,N,N,N,N,N,N,N
+ilo.publication: Approve proposal,Y,N,N,N,N,N,N,N
+ilo.publication: Modify CIP fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify distribution fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify editing fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify layout and design fields,Y,N,Y,Y,N,N,N,Y
+ilo.publication: Modify proofreading fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify review fields,Y,N,N,N,N,N,N,N
+ilo.publication: Update state,N,N,Y,Y,N,N,N,Y
+ilo.publication: Update transition,N,N,Y,Y,N,N,N,Y
+
+[State]
+Id:,pending-distribution
+Title:,Pending distribution
+Description:,
+Transitions,"finalize, retract-to-pending-printing-publication"
+Permissions,Acquire,Anonymous,Manager,Owner,Reader,Editor,Contributor,Reviewer
+Access contents information,Y,N,N,N,N,N,N,N
+View,Y,N,N,N,N,N,N,N
+Modify portal content,Y,N,N,N,N,N,N,N
+Add portal content,Y,N,N,N,N,N,N,N
+Change portal events,Y,N,N,N,N,N,N,N
+List folder contents,Y,N,N,N,N,N,N,N
+ilo.publication: Approve distribution,Y,N,Y,Y,N,N,N,Y
+ilo.publication: Approve printing/publication,Y,N,N,N,N,N,N,N
+ilo.publication: Approve proposal,Y,N,N,N,N,N,N,N
+ilo.publication: Modify CIP fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify distribution fields,Y,N,Y,Y,N,N,N,Y
+ilo.publication: Modify editing fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify layout and design fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify proofreading fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify review fields,Y,N,N,N,N,N,N,N
+ilo.publication: Update state,N,N,Y,N,N,N,N,Y
+
+[State]
+Id:,pending-printing-publication
+Title:,Pending printing/publication
+Description:,
+Transitions,"submit-for-distribution, retract-to-proofreading"
+Permissions,Acquire,Anonymous,Manager,Owner,Reader,Editor,Contributor,Reviewer
+Access contents information,Y,N,N,N,N,N,N,N
+View,Y,N,N,N,N,N,N,N
+Modify portal content,Y,N,N,N,N,N,N,N
+Add portal content,Y,N,N,N,N,N,N,N
+Change portal events,Y,N,N,N,N,N,N,N
+List folder contents,Y,N,N,N,N,N,N,N
+ilo.publication: Approve distribution,Y,N,N,N,N,N,N,N
+ilo.publication: Approve printing/publication,Y,N,Y,N,N,N,N,Y
+ilo.publication: Approve proposal,Y,N,N,N,N,N,N,N
+ilo.publication: Modify CIP fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify distribution fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify editing fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify layout and design fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify proofreading fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify review fields,Y,N,N,N,N,N,N,N
+ilo.publication: Update state,N,N,Y,N,N,N,N,Y
+
+[State]
+Id:,proofreading
+Title:,Proofreading
+Description:,
+Transitions,"submit-for-printing-publication, retract-to-layout-and-design"
+Permissions,Acquire,Anonymous,Manager,Owner,Reader,Editor,Contributor,Reviewer
+Access contents information,Y,N,N,N,N,N,N,N
+View,Y,N,N,N,N,N,N,N
+Modify portal content,Y,N,N,N,N,N,N,N
+Add portal content,Y,N,N,N,N,N,N,N
+Change portal events,Y,N,N,N,N,N,N,N
+List folder contents,Y,N,N,N,N,N,N,N
+ilo.publication: Approve distribution,Y,N,N,N,N,N,N,N
+ilo.publication: Approve printing/publication,Y,N,N,N,N,N,N,N
+ilo.publication: Approve proposal,Y,N,N,N,N,N,N,N
+ilo.publication: Modify CIP fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify distribution fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify editing fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify layout and design fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify proofreading fields,Y,N,Y,Y,N,N,N,Y
+ilo.publication: Modify review fields,Y,N,N,N,N,N,N,N
+ilo.publication: Update state,N,N,Y,Y,N,N,N,Y
+
+[State]
+Id:,published
+Title:,Published
+Description:,
+Transitions,", retract-to-pending-distribution"
+Permissions,Acquire,Anonymous,Manager,Owner,Reader,Editor,Contributor,Reviewer
+Access contents information,Y,N,N,N,N,N,N,N
+View,Y,N,N,N,N,N,N,N
+Modify portal content,Y,N,N,N,N,N,N,N
+Add portal content,Y,N,N,N,N,N,N,N
+Change portal events,Y,N,N,N,N,N,N,N
+List folder contents,Y,N,N,N,N,N,N,N
+ilo.publication: Approve distribution,Y,N,N,N,N,N,N,N
+ilo.publication: Approve printing/publication,Y,N,N,N,N,N,N,N
+ilo.publication: Approve proposal,Y,N,N,N,N,N,N,N
+ilo.publication: Modify CIP fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify distribution fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify editing fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify layout and design fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify proofreading fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify review fields,Y,N,N,N,N,N,N,N
+ilo.publication: Update state,N,N,Y,N,N,N,N,Y
+
+[State]
+Id:,review
+Title:,Under review
+Description:,
+Transitions,"retract-to-draft, submit-for-editing"
+Permissions,Acquire,Anonymous,Manager,Owner,Reader,Editor,Contributor,Reviewer
+Access contents information,Y,N,N,N,N,N,N,N
+View,Y,N,N,N,N,N,N,N
+Modify portal content,Y,N,N,N,N,N,N,N
+Add portal content,Y,N,N,N,N,N,N,N
+Change portal events,Y,N,N,N,N,N,N,N
+List folder contents,Y,N,N,N,N,N,N,N
+ilo.publication: Approve distribution,Y,N,N,N,N,N,N,N
+ilo.publication: Approve printing/publication,Y,N,N,N,N,N,N,N
+ilo.publication: Approve proposal,Y,N,N,N,N,N,N,N
+ilo.publication: Modify CIP fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify distribution fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify editing fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify layout and design fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify proofreading fields,Y,N,N,N,N,N,N,N
+ilo.publication: Modify review fields,Y,N,Y,Y,N,N,N,Y
+ilo.publication: Update state,N,N,Y,Y,N,N,N,Y
+ilo.publication: Update transition,N,N,Y,Y,N,N,N,Y
+
+[Transition]
+Id:,finalize
+Title:,finalize
+Description:,Finished distribution / publication
+Target state:,published
+URL:,%(content_url)s/content_status_modify?workflow_action=finalize
+Trigger:,User
+Guard permission:,ilo.publication: Update state
+
+[Transition]
+Id:,request-for-cip
+Title:,Request for CIP
+Description:,Request for CIP
+Target state:,cip-request
+URL:,%(content_url)s/content_status_modify?workflow_action=request-for-cip
+Trigger:,User
+Guard permission:,ilo.publication: Update state
+
+[Transition]
+Id:,retract-to-cip-request
+Title:,Retract to CIP request
+Description:,Retract to CIP request
+Target state:,cip-request
+URL:,%(content_url)s/content_status_modify?workflow_action=retract-to-cip-request
+Trigger:,User
+
+[Transition]
+Id:,retract-to-draft
+Title:,Retract to draft
+Description:,Retract to draft
+Target state:,draft
+URL:,%(content_url)s/content_status_modify?workflow_action=retract-to-draft
+Trigger:,User
+
+[Transition]
+Id:,retract-to-editing
+Title:,Retract to editing
+Description:,Retract to editing
+Target state:,editing
+URL:,%(content_url)s/content_status_modify?workflow_action=retract-to-editing
+Trigger:,User
+
+[Transition]
+Id:,retract-to-layout-and-design
+Title:,Retract to layout and design
+Description:,Retract to layout and design
+Target state:,layout-design
+URL:,%(content_url)s/content_status_modify?workflow_action=retract-to-layout-and-design
+Trigger:,User
+
+[Transition]
+Id:,retract-to-pending-distribution
+Title:,Retract to pending distribution
+Description:,Retract to pending distribution
+Target state:,pending-distribution
+URL:,%(content_url)s/content_status_modify?workflow_action=retract-to-pending-distribution
+Trigger:,User
+
+[Transition]
+Id:,retract-to-pending-printing-publication
+Title:,Retract to pending printing/publishing
+Description:,Retract to pending printing/publication
+Target state:,pending-printing-publication
+URL:,%(content_url)s/content_status_modify?workflow_action=retract-to-pending-printing-publishing
+Trigger:,User
+
+[Transition]
+Id:,retract-to-proofreading
+Title:,Retract to proofreading
+Description:,Retract to proofreading
+Target state:,proofreading
+URL:,%(content_url)s/content_status_modify?workflow_action=retract-to-proofreading
+Trigger:,User
+
+[Transition]
+Id:,retract-to-review
+Title:,Retract to review
+Description:,Retract to review
+Target state:,review
+URL:,%(content_url)s/content_status_modify?workflow_action=retract-to-review
+Trigger:,User
+
+[Transition]
+Id:,submit-for-distribution
+Title:,Submit for distribution
+Description:,Submit for distribution
+Target state:,pending-distribution
+URL:,%(content_url)s/content_status_modify?workflow_action=submit-for-distribution
+Trigger:,User
+Guard permission:,ilo.publication: Update state
+
+[Transition]
+Id:,submit-for-editing
+Title:,Submit for editing
+Description:,Submit for editing
+Target state:,editing
+URL:,%(content_url)s/content_status_modify?workflow_action=submit-for-editing
+Trigger:,User
+Guard permission:,ilo.publication: Update state
+
+[Transition]
+Id:,submit-for-layout-and-design
+Title:,Submit for layout and design
+Description:,Submit for layout and design
+Target state:,layout-design
+URL:,%(content_url)s/content_status_modify?workflow_action=submit-for-layout-and-design
+Trigger:,User
+Guard permission:,ilo.publication: Update state
+
+[Transition]
+Id:,submit-for-printing-publication
+Title:,Submit for printing/publication
+Description:,Submit for printing/publication
+Target state:,pending-printing-publication
+URL:,%(content_url)s/content_status_modify?workflow_action=submit-for-printing-publication
+Trigger:,User
+Guard permission:,ilo.publication: Update state
+
+[Transition]
+Id:,submit-for-proofreading
+Title:,Submit for proofreading
+Description:,Submit for proofreading
+Target state:,proofreading
+URL:,%(content_url)s/content_status_modify?workflow_action=submit-for-proofreading
+Trigger:,User
+Guard permission:,ilo.publication: Update state
+
+[Transition]
+Id:,submit-for-review
+Title:,Approve and push for review
+Description:,Approve and push for review
+Target state:,review
+URL:,%(content_url)s/content_status_modify?workflow_action=submit-for-review
+Trigger:,User
+Guard permission:,ilo.publication: Update state
+

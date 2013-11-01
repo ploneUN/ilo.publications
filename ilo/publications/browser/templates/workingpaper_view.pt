@@ -1,0 +1,353 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/main_template/macros/master">
+<head>
+</head>
+<body>
+    <metal:content-title fill-slot="content-title"></metal:content-title>
+    <metal:content-description fill-slot="content-description"></metal:content-description>
+
+   <div metal:fill-slot="content-core">
+      <div metal:define-macro="content-core">
+
+         <style type="text/css">
+
+           #publication-state {display: table;
+                              padding: 5px;
+                              background: #eee;
+                              border: 1px solid #666;
+                              margin-top: 10px;
+                           }
+
+            #publication-state dt {
+               width:50%;
+            }
+
+            dl.publication-summary { display: table-row !important; }
+            .publication-summary dt { display: table-cell !important;
+                width: 30%;
+                border-bottom: 1px dotted #666;
+                background: #ccc;
+                padding: 5px;
+                font-weight: normal !important;
+            }
+            .publication-summary dd { display: table-cell !important;
+                padding: 5px;
+                border-bottom: 1px dotted #666;
+                vertical-align: middle;
+                }
+
+
+            #publication-description { color: #666; }
+            dt.publications-state { font-weight: bold !important;
+                background: #eee;
+                font-size: 10pt;
+            }
+     </style>
+
+
+   <!-- notice for draft/approved state -->
+
+   <div tal:define="state python:here.portal_workflow.getInfoFor(here,'review_state')">
+        <dl class="portalMessage info" tal:condition="python:state == 'draft'">
+             <dt>Draft</dt>
+             <dd>Your publication's RPC application is currently
+                 saved as a draft. If you wish to begin the process 
+                 please click on <b>State: Draft</b> and select
+                <b>Approve and Push for Review</b> to move to the next
+                stage of the publication process.
+            </dd>
+        </dl>
+        <dl class="portalMessage info" tal:condition="python:state == 'review'">
+             <dt>Stage 1: Reviewing Process</dt>
+             <dd>Your publication has now reached the review stage.
+             Click Edit to fill in the reviewers’ details and remember
+             to save any changes. When all the required information has
+             been added you may click on <b>State:</b> 
+             and change <b>Under review</b>
+             to <b>Submit for editing</b>. 
+            </dd>
+        </dl>
+        <dl class="portalMessage info" tal:condition="python:state == 'editing'">
+             <dt>Stage 2: Editing process</dt>
+             <dd>
+                This publication has reached the editing stage. When
+                editing of the text is completed, click the green <b>Edit</b>
+                tab and fill in the editor’s details. Once you have
+                filled in all the required information, save it, then
+                click on <b>State</b> and change <b>Under editing</b>
+                and select <b>Request for CIP</b>.  </dd>
+        </dl>
+        <dl class="portalMessage info" tal:condition="python:state == 'cip-request'">
+             <dt>Stage 3: Requesting CIP data</dt>
+             <dd>Has the information required to request CIP data been
+             sent to librarian of the office publishing this? Has a
+             copyright page been issued? Has the ISSN number been inserted?
+             For ILO-Asia Pacific Working Paper Series, use ISSN number 2227-4391 (print),
+             2227-4405 (web-pdf). When these steps are complete,
+             click <b>Edit</b> to update status. Once completed click on
+             <b>State</b> and change CIP and ISBN request
+             to <b>Submit for layout and design.</b> </dd>
+        </dl>
+ 
+        <dl class="portalMessage info" tal:condition="python:state == 'layout-design'">
+             <dt>Stage 4: Layout and design process</dt>
+             <dd>This publication has now reached the Layout and Design
+             Stage. When layout and design have been completed to ILO
+             standards click <b>Edit</b> to update status and save the changes.
+             Once completed click on <b>State</b> and change <b>Layout and design</b>
+             to <b>Submit for proofreading.</b></dd>
+       </dl>
+       <dl class="portalMessage info" tal:condition="python:state == 'proofreading'">
+             <dt>Stage 5: Proofreading process</dt>
+             <dd>This publication is at proofreading stage.
+             If it has been proofread, then click on <b>Edit</b> to update
+                 the Proofreading check.
+                 Then click on <b>State: Proofreading</b> and select <b>Submit for printing/publication</b>.
+            </dd>
+        </dl>
+      <dl class="portalMessage info" tal:condition="python:state == 'pending-printing-publication'">
+             <dt>Stage 6: Printing and/or online publication process</dt>
+             <dd>
+                This publication has been reviewed for compliance with ILO
+                publication standards and recommended format, and number
+                of copies to be printed (if any). Click <b>Edit</b> to update
+                this information. Once you have added all required
+                information, save the changes and click on
+                <b>State: Pending printing/publication</b>. Select
+                <b>Submit for distribution.</b> 
+             </dd>
+        </dl>
+       <dl class="portalMessage info" tal:condition="python:state == 'pending-distribution'">
+           <dt>Stage 7: Distribution process</dt>
+           <dd>
+                This publication has been reviewed for compliance with ILO
+                publication standards and recommended format, and number
+                of copies to be printed (if any). Click <b>Edit</b> to update
+                this information. Once you have added all required
+                information, save the changes and click on <b>State: Pending distribution</b>.
+                Select <b>Submit for distribution.</b>
+           </dd>
+        </dl>
+         <dl class="portalMessage info" tal:condition="python:state == 'published'">
+             <dt>Publication process completed</dt>
+             <dd>This publication has passed all review and
+                 requirements and complies with ILO guidelines.</dd>
+        </dl>
+ 
+   </div>
+
+   <div id="publication-content">
+
+     <div id="publication-summary">
+
+
+     <h1 tal:content="context/title">Title</h1>
+     <h3 tal:content="context/subtitle">SubTitle</h3>
+     <p id="publication-description" tal:content="context/description"></p>
+
+        <dl class="publication-summary">
+            <dt tal:content="structure view/w/publication_authors/label" />
+            <dd tal:content="python:'; '.join(getattr(context, 'publication_authors', []) or [])" />
+        </dl>
+
+
+        <dl class="publication-summary">
+            <dt tal:content="structure view/w/publishing_year/label">Publishing year</dt>
+            <dd tal:content="context/publishing_year">2012</dd>
+        </dl>
+
+        <dl class="publication-summary">
+            <dt tal:content="structure view/w/isbn/label">ISBN</dt>
+            <dd tal:content="python: '; '.join(context.isbn or [])">ISBN####</dd>
+        </dl>
+
+        <dl class="publication-summary">
+            <dt tal:content="structure view/w/office/label" />
+            <dd tal:content="structure view/w/office/render" />
+        </dl>
+
+
+        <dl class="publication-summary">
+            <dt tal:content="structure view/w/country/label" />
+            <dd tal:content="structure view/w/country/render" />
+        </dl>
+
+        <dl class="publication-summary">
+            <dt tal:content="structure view/w/work_areas/label" />
+            <dd tal:content="python:'; '.join(context.work_areas or [])" />
+        </dl>
+
+        <dl class="publication-summary">
+            <dt tal:content="structure view/w/languages/label" />
+            <dd tal:content="structure view/w/languages/render" />
+        </dl>
+
+        <dl class="publication-summary">
+            <dt tal:content="structure view/w/publication_type/label" />
+            <dd tal:content="structure view/w/publication_type/render" />
+        </dl>
+
+        </div>
+
+        <div id="publication-state">
+
+
+        <h3>Publication process</h3>
+
+       <dl class="publication-summary">
+            <dt>Comforms to Regional Research Strategy
+                and approved by responsible chief</dt>
+            <dd tal:condition="context/rrs_approved">Yes</dd>
+            <dd tal:condition="python: not context.rrs_approved">No</dd>
+        </dl>
+        <dl class="publication-summary">
+            <dt tal:content="structure view/w/series_title/label" />
+            <dd tal:content="structure view/w/series_title/render" />
+        </dl>
+
+        <dl class="publication-summary">
+            <dt class="publications-state">Stage 1: Reviewing process</dt>
+        </dl>
+ 
+        <dl class="publication-summary">
+
+            <dt>Draft paper examined by a meeting/workshop or
+                reviewed by two ILO officials, revised 
+                in light of comments</dt>
+            <dd tal:condition="context/ilo_reviewers">Yes</dd>
+            <dd tal:condition="python: not context.ilo_reviewers">No</dd>
+        </dl>
+        <dl class="publication-summary">
+            <dt tal:content="structure view/w/ilo_reviewers/label" />
+            <dd tal:content="python:'; '.join(context.ilo_reviewers or [])" />
+        </dl>
+
+
+        <!-- review meeting or 2 ILO reviewers -->
+           
+
+        <dl class="publication-summary">
+            <dt class="publications-state">Stage 2: Editing process</dt>
+        </dl>
+ 
+
+        <dl class="publication-summary">
+            <dt tal:content="structure view/w/editor_name/label" />
+            <dd tal:content="structure view/w/editor_name/render" />
+        </dl>
+
+
+
+        <dl class="publication-summary">
+            <dt class="publications-state">Stage 3: CIP request process</dt>
+        </dl>
+ 
+        <dl class="publication-summary">
+
+            <dt>Submitted for Cataloging in Publication (CIP) data</dt>
+            <dd tal:condition="context/submitted_for_cip">Yes</dd>
+            <dd tal:condition="python: not context.submitted_for_cip">No</dd>
+
+        </dl>
+        <dl class="publication-summary">
+
+            <dt>Copyright page issued</dt>
+            <dd tal:condition="context/issued_cip">Yes</dd>
+            <dd tal:condition="python: not context.issued_cip">No</dd>
+
+        </dl>
+
+
+        <dl class="publication-summary">
+            <dt class="publications-state">Stage 4: Layout &amp; design process</dt>
+        </dl>
+ 
+        <dl class="publication-summary">
+            <dt>Layout done</dt>
+            <dd tal:condition="context/layout_done">Yes</dd>
+            <dd tal:condition="python: not context.layout_done">No</dd>
+        </dl>
+
+        <dl class="publication-summary">
+            <dt>Design done</dt>
+            <dd tal:condition="context/design_done">Yes</dd>
+            <dd tal:condition="python: not context.design_done">No</dd>
+        </dl>
+
+        <dl class="publication-summary">
+            <dt class="publications-state">Stage 5: Proofreading process</dt>
+         </dl>
+
+        <dl class="publication-summary">
+            <dt>Proofreading hardcopy sent to RPC</dt>
+            <dd tal:condition="context/proofreading_sent">Yes</dd>
+            <dd tal:condition="python: not context.proofreading_sent">No</dd>
+        </dl>
+
+        <dl class="publication-summary">
+            <dt>Proofreading done</dt>
+            <dd tal:condition="context/proofreading_done">Yes</dd>
+            <dd tal:condition="python: not context.proofreading_done">No</dd>
+        </dl>
+
+        <dl class="publication-summary">
+            <dt class="publications-state">Stage 6: Printing and/or online publication process</dt>
+        </dl>
+
+
+        <dl class="publication-summary">
+            <dt>Meets ILO publication standards</dt>
+            <dd tal:condition="context/standards_met">Yes</dd>
+            <dd tal:condition="python: not context.standards_met">No</dd>
+        </dl>
+
+        <dl class="publication-summary">
+        <dt tal:content="structure view/w/recommended_formats/label" />
+        <dd tal:content="structure view/w/recommended_formats/render" />
+        </dl>
+
+        <dl class="publication-summary">
+            <dt tal:content="structure view/w/copies_to_print/label" />
+            <dd tal:content="structure view/w/copies_to_print/render" />
+        </dl>
+
+        <dl class="publication-summary">
+            <dt tal:content="structure view/w/publication_format/label" />
+            <dd tal:content="structure view/w/publication_format/render" />
+        </dl>
+
+        <dl class="publication-summary">
+            <dt class="publications-state">Stage 7: Distribution process</dt>
+        </dl>
+
+        <dl class="publication-summary">
+            <dt>Distribution list or strategy</dt>
+            <dd tal:content="structure view/w/distribution_strategy_file/render" />
+        </dl>
+
+        <dl class="publication-summary">
+            <dt>Completed quality control and is ready for distribution
+            and WCMS uploading.</dt>
+            <dd tal:condition="context/qa_done">Yes</dd>
+            <dd tal:condition="python: not context.qa_done">No</dd>
+        </dl>
+
+        <dl class="publication-summary">
+            <dt tal:content="structure view/w/remote_url/label" />
+            <dd>
+            <a tal:attributes="href context/remote_url"
+               tal:content="context/remote_url">url</a>
+            </dd>
+        </dl>
+
+    </div>
+</div>
+
+
+      </div>
+  </div>
+</body>
+</html>

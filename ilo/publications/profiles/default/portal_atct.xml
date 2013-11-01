@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<atcttool>
+ <topic_indexes>
+ <index name="publishing_year"
+    description="Publishing year"
+    enabled="True"
+    friendlyName="Publishing year">
+
+    <criteria>ATSimpleIntCriterion</criteria>
+
+ </index>
+
+ <index name="publication_type"
+    description="Publication Type"
+    enabled="True"
+    friendlyName="Publication Type">
+
+    <criteria>ATSelectionCriterion</criteria>
+    <criteria>ATSimpleStringCriterion</criteria>
+
+ </index>
+ <index name="publication_languages"
+    description="Publication Languages"
+    enabled="True"
+    friendlyName="Publication Languages">
+
+    <criteria>ATSelectionCriterion</criteria>
+    <criteria>ATSimpleStringCriterion</criteria>
+
+ </index>
+ </topic_indexes>
+
+ <topic_metadata>
+     <metadata name="publishing_year"
+        description="Publishing year"
+        enabled="True"
+        friendlyName="Publishing year"/>
+     <metadata name="publication_type"
+        description="Publication Type"
+        enabled="True"
+        friendlyName="Publication Type"/>
+     <metadata name="publication_languages"
+        description="Languages"
+        enabled="True"
+        friendlyName="Languages"/>
+     <metadata name="office"
+        description="Publication Office"
+        enabled="True"
+        friendlyName="Publication Office"/>
+     <metadata name="work_areas"
+        description="Publication Work Areas"
+        enabled="True"
+        friendlyName="Publication Work Areas"/>
+ </topic_metadata>
+</atcttool>
