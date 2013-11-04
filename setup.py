@@ -26,12 +26,13 @@ setup(name='ilo.publications',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'plone.app.dexterity',
+          'plone.app.dexterity [grok, relations]',
           'plone.namedfile [blobs]',
           'collective.autopermission',
           'collective.wtf',
           'collective.dexteritytextindexer',
           'collective.miscbehaviors',
+          'ilo.vocabularies',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
