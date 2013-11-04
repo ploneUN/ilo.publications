@@ -223,12 +223,17 @@
 
         <dl class="publication-summary">
             <dt tal:content="structure view/w/ilo_reviewer/label" />
-            <dd tal:content="structure view/w/ilo_reviewer/render" />
+            <dd tal:define="val view/w/ilo_reviewer/render"
+            tal:content="structure python:view.newline_to_comma(val)"
+            
+            />
         </dl>
 
         <dl class="publication-summary">
             <dt tal:content="structure view/w/external_reviewer/label" />
-            <dd tal:content="structure view/w/external_reviewer/render" />
+            <dd tal:define="val view/w/external_reviewer/render"
+            tal:content="structure python:view.newline_to_comma(val)"
+ />
         </dl>
 
         <dl class="publication-summary">
@@ -250,7 +255,7 @@
 
         <dl class="publication-summary">
         <dt tal:content="structure view/w/external_editor_name/label" />
-        <dd tal:content="structure view/w/external_editor_name/render" />
+        <dd tal:define="structure view/w/external_editor_name/render" />
         </dl>
 
         <dl class="publication-summary">
@@ -281,7 +286,7 @@
 
 
         <dl class="publication-summary">
-            <dt class="publications-state">Stage 4: Layout &amp; design process</dt>
+            <dt class="publications-state">Stage 4: Layout and design process</dt>
         </dl>
  
         <dl class="publication-summary">
@@ -349,7 +354,7 @@
 
         <dl class="publication-summary">
             <dt>Completed quality control and is ready for distribution
-            and WCMS uploading.</dt>
+            and WCMS uploading</dt>
             <dd tal:condition="context/qa_done">Yes</dd>
             <dd tal:condition="python: not context.qa_done">No</dd>
         </dl>

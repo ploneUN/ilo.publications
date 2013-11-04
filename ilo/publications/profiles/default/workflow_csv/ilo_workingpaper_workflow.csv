@@ -281,7 +281,7 @@ Id:,retract-to-pending-printing-publication
 Title:,Retract to pending printing/publishing
 Description:,Retract to pending printing/publication
 Target state:,pending-printing-publication
-URL:,%(content_url)s/content_status_modify?workflow_action=retract-to-pending-printing-publishing
+URL:,%(content_url)s/content_status_modify?workflow_action=retract-to-pending-printing-publication
 Trigger:,User
 
 [Transition]

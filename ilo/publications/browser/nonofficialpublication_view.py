@@ -8,3 +8,7 @@ class View(dexterity.DisplayForm):
     grok.template('nonofficialpublication_view')
     grok.context(INonOfficialPublication)
     grok.require('zope2.View')
+
+    def newline_to_comma(self, value):
+        return value.replace('\r', ';')
+

@@ -149,7 +149,7 @@ class ICommonChecklistSchema(form.Schema):
 
     dexterity.write_permission(recommended_formats='ilo.publication.ApprovePrintingPublication')
     recommended_formats = schema.List(
-        title=u'The RPC recommends this publication be produced in:',
+        title=u'The RPC recommends this publication be produced in',
         value_type=schema.Choice(
             values=[u'Printed format','Electronic/online formats']
         )
@@ -159,7 +159,7 @@ class ICommonChecklistSchema(form.Schema):
 
     dexterity.write_permission(copies_to_print='ilo.publication.ApprovePrintingPublication')
     copies_to_print = schema.Int(
-        title=u'Number of copies to be printed.',
+        title=u'Number of copies to be printed',
         required=True,
     )
 
@@ -278,7 +278,7 @@ class INonOfficialPublicationChecklist(ICommonChecklistSchema):
 
     dexterity.write_permission(ilo_reviewer='ilo.publication.ModifyReviewFields')
     dexteritytextindexer.searchable('ilo_reviewer')
-    ilo_reviewer = schema.TextLine(
+    ilo_reviewer = schema.Text(
         title=u'ILO reviewer name and unit',
         required=True,
         description=(u'Has the document been peer reviewed by an ILO '
@@ -290,7 +290,7 @@ class INonOfficialPublicationChecklist(ICommonChecklistSchema):
 
     dexterity.write_permission(external_reviewer='ilo.publication.ModifyReviewFields')
     dexteritytextindexer.searchable('external_reviewer')
-    external_reviewer = schema.TextLine(
+    external_reviewer = schema.Text(
         title=u'External reviewer / meeting or workshop review',
         required=True,
         description=(u'Has the document been externally peer reviewed, '
@@ -389,7 +389,7 @@ class IWorkingPaperChecklist(ICommonChecklistSchema):
     dexterity.write_permission(series_title='ilo.publication.ApproveProposal')
     series_title = schema.TextLine(
         title=(u'What is the title of the working paper series (i.e. ILO '
-         'Asia-Pacific Working Paper Series)?')
+         'Asia-Pacific Working Paper Series)')
     )
 
     dexterity.write_permission(rrs_approved='ilo.publication.ApproveProposal')
