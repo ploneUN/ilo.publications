@@ -7,18 +7,6 @@
       metal:use-macro="context/main_template/macros/master">
 <head>
 
-    <metal:style fill-slot="style_slot">
-    <style type="text/css">
-    
-        .publication-title { 
-            margin-top: 20px;
-        }
-
-    
-
-    </style>
-
-    </metal:style>
 
 </head>
 <body>
@@ -75,10 +63,11 @@
                                    item_samedate python: (item_end - item_start &lt; 1) if item_type == 'Event' else False">
             <metal:block define-slot="entry">
 
-            <div>
-            <a tal:attributes="href item_url"><h3 class="publication-title" tal:content="item_title_or_id">
+            <div style="margin-bottom:25px; border-bottom:1px dotted #838383;
+                padding-bottom:20px;">
+            <a tal:attributes="href item_url"><h3 tal:content="item_title_or_id">
             </h3></a>
-            <div class="discreet" tal:content="item_obj/subtitle"/>
+            <h5 style="margin-bottom:10px;" tal:content="item_obj/subtitle"/>
             <div tal:content="item_description">
             </div>
                 <a tal:attributes="href item_url">Read More...</a>
