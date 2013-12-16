@@ -453,11 +453,10 @@ FIELDS=[
     'recommended_formats',
     'copies_to_print',
     'publication_format',
-    'diststrategy_ready',
     'qa_done',
-    'lowq_pdf',
-    'highq_pdf',
-    'wcms_uploaded',
+]
+
+NOPFIELDS=[
     'rpc_approved',
     'rpc_submitted',
     'ilo_reviewer',
@@ -466,24 +465,27 @@ FIELDS=[
     'editor_name',
     'external_editor_name',
     'finalized_editing',
+]
+
+WPFIELDS=[
     'series_title',
     'rrs_approved',
     'ilo_reviewers',
     'formatting_done',
     'distribution_strategy_file',
     'remote_url'
-    ]
+]
 
 class INonOfficialPublication(IPublicationSchema, INonOfficialPublicationChecklist):
     form.fieldset('stagefields',
         label=u'Add new info',
-        fields=FIELDS
+        fields=FIELDS + NOPFIELDS
     )
     pass
 
 class IWorkingPaper(IPublicationSchema, IWorkingPaperChecklist):
     form.fieldset('stagefields',
         label=u'Add new info',
-        fields=FIELDS
+        fields=FIELDS + WPFIELDS
     )
     pass
