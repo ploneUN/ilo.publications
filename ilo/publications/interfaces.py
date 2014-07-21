@@ -95,28 +95,28 @@ class ICommonChecklistSchema(form.Schema):
 
     # CIP state
 
-    dexterity.write_permission(submitted_for_cip='ilo.publication.ModifyCIPFields')
     form.widget(submitted_for_cip='z3c.form.browser.radio.RadioFieldWidget')
     submitted_for_cip = schema.Bool(
         title=u'Submitted for Cataloging in Publication (CIP) data', 
         description=u'Have the ISSN, final title and subtitle, author/s, ' +
         'introduction/overview, table of contents and abstract been sent' +
         ' to the librarian of the office that is publishing the item or' +
-        ' sent to INFORMCIP@ilo.org to request CIP data?'
+        ' sent to INFORMCIP@ilo.org to request CIP data?',
+        required=False
     )
 
-    dexterity.write_permission(issued_cip='ilo.publication.ModifyCIPFields')
     form.widget(issued_cip='z3c.form.browser.radio.RadioFieldWidget')
     issued_cip = schema.Bool(
         title=u'Copyright page issued?',
-        description=u'Has the copyright page been issued?'
+        description=u'Has the copyright page been issued?',
+	required=False,
+
     )
 
 
 
     # Proofreading state
 
-    dexterity.write_permission(proofreading_sent='ilo.publication.ModifyProofreadingFields')
     form.widget(proofreading_sent='z3c.form.browser.radio.RadioFieldWidget')
     proofreading_sent = schema.Bool(
         title=u'Proofread hardcopy sent to RPC?',
@@ -128,68 +128,69 @@ class ICommonChecklistSchema(form.Schema):
         repeated as many times as is necessary to meet the required RPC
         standards. Responsibility for making any required changes will
         remain solely with the author and not the RPC. 
-        '''
+        ''',
+	required=False,
+
         )
 
-    dexterity.write_permission(proofreading_done='ilo.publication.ModifyProofreadingFields')
     form.widget(proofreading_done='z3c.form.browser.radio.RadioFieldWidget')
     proofreading_done = schema.Bool(
         title=u'Proofreading done',
         description=(u'Have the proofs (including cover and copyright page) '
-        'been corrected and approved ready for printing/online publication?')
+        'been corrected and approved ready for printing/online publication?'),
+	required=False,
+
     )
 
       # Printing/Publication state
 
-    dexterity.write_permission(standards_met='ilo.publication.ApprovePrintingPublication')
     form.widget(standards_met='z3c.form.browser.radio.RadioFieldWidget')
     standards_met = schema.Bool(
-        title=u'Does the publication meet ILO publication standards?'
+        title=u'Does the publication meet ILO publication standards?',
+	required=False,
+
     )
 
-    dexterity.write_permission(recommended_formats='ilo.publication.ApprovePrintingPublication')
     recommended_formats = schema.List(
         title=u'The RPC recommends this publication be produced in',
         value_type=schema.Choice(
             values=[u'Printed format','Electronic/online formats']
-        )
+        ),
+	required=False,
+
     )
     directlyProvides(recommended_formats, IUnorderedCollection)
 
 
-    dexterity.write_permission(copies_to_print='ilo.publication.ApprovePrintingPublication')
     copies_to_print = schema.Int(
         title=u'Number of copies to be printed',
-        required=True,
+        required=False,
     )
 
-    dexterity.write_permission(publication_format='ilo.publication.ApprovePrintingPublication')
     publication_format = schema.List(
         title=u'Format of publication',
-        required=True,
+        required=False,
         value_type=schema.Choice(source='ilo.vocabulary.publicationformats')
     )
     directlyProvides(publication_format, IUnorderedCollection)
 
     # Distribution state
 
-    dexterity.write_permission(remote_url='ilo.publication.ModifyDistributionFields')
     remote_url = schema.URI(
         title=u'Link to full text in WCMS',
         required=False
     )
 
-    dexterity.write_permission(distribution_strategy_file='ilo.publication.ModifyDistributionFields')
     distribution_strategy_file = NamedBlobFile(
         title=u'Upload distribution list or strategy document.',
         required=False,
     )
 
-    dexterity.write_permission(qa_done='ilo.publication.ApproveDistribution')
     form.widget(qa_done='z3c.form.browser.radio.RadioFieldWidget')
     qa_done = schema.Bool(
         title=(u'Has the title completed quality control and is ready for '
-            'distribution and WCMS uploading?')
+            'distribution and WCMS uploading?'),
+    required=False,
     )
 #
 #    dexterity.write_permission(lowq_pdf='ilo.publication.ModifyDistributionFields')
@@ -218,29 +219,29 @@ class INonOfficialPublicationChecklist(ICommonChecklistSchema):
     
     publication_type = schema.Choice(
         title=u'Type of publication',
-        required=True,
+        required=False,
         source='ilo.vocabulary.publicationtypes.nonofficialpublication'
-    )
+        )
 
   # Layout & Design state
 
-    dexterity.write_permission(layout_done='ilo.publication.ModifyLayoutDesignFields')
     form.widget(layout_done='z3c.form.browser.radio.RadioFieldWidget')
     layout_done = schema.Bool(
         title=u'Layout done',
         description=(u'Has the layout of this non-official publication followed the '
         'standard template set for this type of publication? Has the copyright page, CIP '
-        'data, ISBN been inserted?')
+        'data, ISBN been inserted?'),
+	required=False,
         
         
     )
 
-    dexterity.write_permission(design_done='ilo.publication.ModifyLayoutDesignFields')
     form.widget(design_done='z3c.form.browser.radio.RadioFieldWidget')
     design_done = schema.Bool(
         title=u'Design done',
         description=(u'Has the design of this non-official publication followed the '
-        'standard template set for this type of publication?')
+        'standard template set for this type of publication?'),
+    required=False,
     )
 
 
@@ -248,7 +249,6 @@ class INonOfficialPublicationChecklist(ICommonChecklistSchema):
     #CIP state
 
     dexteritytextindexer.searchable('isbn')
-    dexterity.write_permission(isbn='ilo.publication.ModifyCIPFields')
     isbn = schema.List(
         title=u'ISBN number',
         description=u'Fill in the ISBN number for this non-official publication (one per line).',
@@ -258,29 +258,28 @@ class INonOfficialPublicationChecklist(ICommonChecklistSchema):
 
     # Approval state
 
-    dexterity.write_permission(rpc_approved='ilo.publication.ApproveProposal')
     form.widget(rpc_approved='z3c.form.browser.radio.RadioFieldWidget')
     rpc_approved = schema.Bool(
         title=u'Approved by RPC Focal Point',
         description=(u'Does the proposed publication conform to the '
             'Regional Research Strategy and has it been approved '
-            'by RPC focal point?')
+            'by RPC focal point?'),
+    required=False
     )
 
-    dexterity.write_permission(rpc_submitted='ilo.publication.ApproveProposal')
     form.widget(rpc_submitted='z3c.form.browser.radio.RadioFieldWidget')
     rpc_submitted = schema.Bool(
         title=(u'Has the title been submitted in advanced to the RPC ' 
-            'Provisional Publications Programme?')
+            'Provisional Publications Programme?'),
+    required=False
     )
 
     # Reviewer
 
-    dexterity.write_permission(ilo_reviewer='ilo.publication.ModifyReviewFields')
     dexteritytextindexer.searchable('ilo_reviewer')
     ilo_reviewer = schema.Text(
         title=u'ILO reviewer name and unit',
-        required=True,
+        required=False,
         description=(u'Has the document been peer reviewed by an ILO '
             'official outside  the authoring unit and written ' 
             'comments submitted? If yes, fill in the reviewer name '
@@ -288,11 +287,10 @@ class INonOfficialPublicationChecklist(ICommonChecklistSchema):
     )
 
 
-    dexterity.write_permission(external_reviewer='ilo.publication.ModifyReviewFields')
     dexteritytextindexer.searchable('external_reviewer')
     external_reviewer = schema.Text(
         title=u'External reviewer / meeting or workshop review',
-        required=True,
+        required=False,
         description=(u'Has the document been externally peer reviewed, '
             '(i.e. by a reviewer from another organization, or outside the '
             'authoring unit\'s ILO region or examined by a meeting/workshop of '
@@ -303,26 +301,25 @@ class INonOfficialPublicationChecklist(ICommonChecklistSchema):
             'in the title, organization and date of the meeting/workshop here.')
     )
 
-    dexterity.write_permission(finalized_draft='ilo.publication.ModifyReviewFields')
     form.widget(finalized_draft='z3c.form.browser.radio.RadioFieldWidget')
     finalized_draft = schema.Bool(
         title=(u'Has the Author revised and finalized the draft in the '
-            'light of reviewer comments')
+            'light of reviewer comments'),
+        required=False
     )
 
     # Editing state
 
-    dexterity.write_permission(editor_name='ilo.publication.ModifyEditingFields')
     dexteritytextindexer.searchable('editor_name')
     editor_name = schema.TextLine(
         title=u'Name of internal editor',
         description=(u'Has the manuscript been evaluated by the author and '
         'any substantive or copy-editing completed to ILO standards, by the '
         'author/author\'s unit?. If yes, fill in the author/author\'s unit or '
-        'editor\'s name if not author.')
+        'editor\'s name if not author.'),
+    required=False,
     )
 
-    dexterity.write_permission(external_editor_name='ilo.publication.ModifyEditingFields')
     dexteritytextindexer.searchable('external_editor_name')
     external_editor_name = schema.TextLine(
         title=u'Name and position of external editor',
@@ -330,14 +327,15 @@ class INonOfficialPublicationChecklist(ICommonChecklistSchema):
             'the editor received the Publications Support Pack?. If yes, fill '
             'in the editor name and position here. (The editor must be from '
             'outside the author\'s unit. Use of a professional editor is '
-            'recommended.)')
+            'recommended.)'),
+        required=False
     )
 
-    dexterity.write_permission(finalized_editing='ilo.publication.ModifyEditingFields')
     form.widget(finalized_editing='z3c.form.browser.radio.RadioFieldWidget')
     finalized_editing = schema.Bool(
         title=(u'Has the editor finalized the manuscript to ILO standards '
-        'and submitted it with the Handover Checklist for Editors?')
+        'and submitted it with the Handover Checklist for Editors?'),
+    required=False,
     )
 
 
@@ -346,36 +344,33 @@ class IWorkingPaperChecklist(ICommonChecklistSchema):
 
     publication_type = schema.Choice(
         title=u'Type of publication',
-        required=True,
+        required=False,
         source='ilo.vocabulary.publicationtypes.workingpaper'
     )
 
   # Layout & Design state
 
-    dexterity.write_permission(layout_done='ilo.publication.ModifyLayoutDesignFields')
     form.widget(layout_done='z3c.form.browser.radio.RadioFieldWidget')
     layout_done = schema.Bool(
         title=u'Layout done',
         description=(u'Has the layout of this working paper followed the '
         'standard template set for this series? Has the copyright page, CIP '
-        'data, ISSN been inserted?')
-        
-        
+        'data, ISSN been inserted?'),
+    required=False,
     )
 
-    dexterity.write_permission(design_done='ilo.publication.ModifyLayoutDesignFields')
     form.widget(design_done='z3c.form.browser.radio.RadioFieldWidget')
     design_done = schema.Bool(
         title=u'Design done',
         description=(u'Has the design of this working paper followed the '
-        'standard template set for this series?')
+        'standard template set for this series?'),
+    required=False,
     )
 
 
         #CIP state
 
     dexteritytextindexer.searchable('isbn')
-    dexterity.write_permission(isbn='ilo.publication.ModifyCIPFields')
     isbn = schema.List(
         title=u'ISSN number',
         description=u'Fill in the ISSN number for this Working Paper Series (one per line).',
@@ -386,22 +381,21 @@ class IWorkingPaperChecklist(ICommonChecklistSchema):
 
     # Approval state
 
-    dexterity.write_permission(series_title='ilo.publication.ApproveProposal')
     series_title = schema.TextLine(
         title=(u'What is the title of the working paper series (i.e. ILO '
-         'Asia-Pacific Working Paper Series)')
+         'Asia-Pacific Working Paper Series)'),
+        required=False,
     )
 
-    dexterity.write_permission(rrs_approved='ilo.publication.ApproveProposal')
     form.widget(rrs_approved='z3c.form.browser.radio.RadioFieldWidget')
     rrs_approved = schema.Bool(
         title=(u'Does the proposed publication conform to the Regional '
-        'Research Strategy and has it been approved by responsible chief?')
+        'Research Strategy and has it been approved by responsible chief?'),
+    required=False,
     )
 
     # Review state
 
-    dexterity.write_permission(ilo_reviewers='ilo.publication.ModifyReviewFields')
     dexteritytextindexer.searchable('ilo_reviewers')
     ilo_reviewers = schema.List(
         title=u'Reviewers',
@@ -411,12 +405,12 @@ class IWorkingPaperChecklist(ICommonChecklistSchema):
         'person per line. If it was examined in a meeting/workshop, fill in '
         'the title, organization, and date of the meeting/workshop in a single '
         'line.'),
-        value_type=schema.TextLine()
+        value_type=schema.TextLine(),
+        required=False,
     )
 
     # Editing state
 
-    dexterity.write_permission(editor_name='ilo.publication.ModifyEditingFields')
     dexteritytextindexer.searchable('editor_name')
     editor_name = schema.List(
         title=u'Editor Name and Title',
@@ -426,19 +420,20 @@ class IWorkingPaperChecklist(ICommonChecklistSchema):
             'copy-editing and been issued a contract.</li><li>The editor has '
             'finalized the text to relevant ILO standards.</li></ol>If yes, '
             'fill in the editor\'s name and title here.'),
-        value_type=schema.TextLine()
+        value_type=schema.TextLine(),
+        required=False,
     )
 
 
     # Layout & Design state
 
-    dexterity.write_permission(formatting_done='ilo.publication.ModifyLayoutDesignFields')
     form.widget(formatting_done='z3c.form.browser.radio.RadioFieldWidget')
     formatting_done = schema.Bool(
         title=u'Formatting done',
         description=(u'Have the correct formatting style, front/back covers, '
         'font, formatting style, copyright page with CIP data, ISSN, etc. been '
-        'followed?')
+        'followed?'),
+    required=False,
     )
 
 FIELDS=[
@@ -478,14 +473,14 @@ WPFIELDS=[
 
 class INonOfficialPublication(IPublicationSchema, INonOfficialPublicationChecklist):
     form.fieldset('stagefields',
-        label=u'Add new info',
+        label=u'Publication Process',
         fields=FIELDS + NOPFIELDS
     )
     pass
 
 class IWorkingPaper(IPublicationSchema, IWorkingPaperChecklist):
     form.fieldset('stagefields',
-        label=u'Add new info',
+        label=u'Publication Process',
         fields=FIELDS + WPFIELDS
     )
     pass
