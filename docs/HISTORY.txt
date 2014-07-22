@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0dev (unreleased)
+1.4dev (unreleased)
 -------------------
 
-- Initial release
+- Remove workflow guards for fields and user tips.
