@@ -166,7 +166,7 @@
 
         <dl class="publication-summary">
         <dt tal:content="structure view/w/external_editor_name/label" />
-        <dd tal:define="structure view/w/external_editor_name/render" />
+        <dd tal:content="structure view/w/external_editor_name/render" />
         </dl>
 
         <dl class="publication-summary">
