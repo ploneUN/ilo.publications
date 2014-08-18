@@ -1,6 +1,5 @@
 Introduction
 ============
 
-
-
-This product may contain traces of nuts.
+This Plone content type to support publication management process
+according to latest ILO directive.
