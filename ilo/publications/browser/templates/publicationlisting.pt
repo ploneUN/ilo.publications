@@ -67,7 +67,7 @@
                 padding-bottom:20px;">
             <a tal:attributes="href item_url"><h3 tal:content="item_title_or_id">
             </h3></a>
-            <h5 style="margin-bottom:10px;" tal:content="item_obj/subtitle"/>
+            <h5 style="margin-bottom:10px;" tal:condition="python: hasattr(item_obj, 'subtitle')" tal:content="item_obj/subtitle"/>
             <div tal:content="item_description">
             </div>
                 <a tal:attributes="href item_url">Read More...</a>
